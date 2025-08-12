@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 400px;
+    }
+    h2 {
+      text-align: center;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    a {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      color: #28a745;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Create Account</h2>
+    <form id="loginForm" onsubmit="handleSubmit(event)">
+      <input type="text" id="newUsername" placeholder="Username" required>
+      <input type="password" id="newPassword" placeholder="Password" required>
+      <button type="submit">Create Account</button>
+    </form>
+    <a href="login.html">Already have an account? Login</a>
+  </div>                                                                                                                                                                                                                                                                                                                                        
+
+ 
+  <script>
+    function handleSubmit(event){
+        userREGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+        passwordREGEX=/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/
+       event.preventDefault();
+        const username = document.getElementById('newUsername').value.trim();
+        const password = document.getElementById('newPassword').value.trim();
+
+    //   // Send login data to the server
+    //   fetch('/login', {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify({ username, password })
+    //   })
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     if (data.success) {
+    //       alert('Login successful!');
+    //       // Redirect to a dashboard or home page
+    //       window.location.href = '/dashboard';
+    //     } else {
+    //       alert('Invalid username or password');
+    //     }
+    //   })
+    // 
+    //   .catch(error => console.error('Error:', error));
+
+    let valid = true;
+        if(username==""){
+            alert("enter the username");
+            valid = false;
+        }else if(!userREGEX.test(username)){
+            alert("Enter a valid email")
+            valid = false;
+        }
+
+        if(password==""){
+            alert("enter the password");
+            valid = false;
+        }else if(!passwordREGEX.test(password)){
+            alert("password should be atleast 8 characters , having an upper case , a lower case a special character");
+            valid = false;
+        }
+
+    if(valid){
+        document.getElementById('loginForm').submit();
+        window.location.href = "movie.html";
+        };
+    }
+  </script>
+</body>
+</html>
